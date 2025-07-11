@@ -2,38 +2,148 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Modelo GLB</title>
+    <title>Modelo GLB con AR</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
-      body {
+      html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
         overflow: hidden;
+        font-family: Arial, sans-serif;
       }
+
       model-viewer {
         width: 100vw;
         height: 100vh;
+        --poster-color: transparent;
+      }
+
+      /* Botón AR */
+      #ar-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #00c9a7;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
+      }
+
+      #ar-button:hover {
+        background: #009e82;
+      }
+
+      /* Hotspot Buttons */
+      .Hotspot {
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 2px solid white;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .Hotspot:hover {
+        transform: scale(1.2);
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+      }
+
+      .HotspotAnnotation {
+        position: absolute;
+        top: 30px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+
+      #ar-prompt {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+      }
+
+      #ar-prompt img {
+        width: 48px;
+        height: auto;
+        opacity: 0.8;
+      }
+
+      .progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        z-index: 5;
+      }
+
+      .update-bar {
+        height: 100%;
+        background-color: #00c9a7;
+        width: 0%;
+        transition: width 0.3s;
+      }
+
+      .hide {
+        display: none;
       }
     </style>
   </head>
   <body>
-<model-viewer src="https://sharkyiex.github.io/modeltest/low-poly_truck_car_drifter.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1.21" autoplay exposure="0.79" shadow-softness="1" auto-rotate>
-    <button class="Hotspot" slot="hotspot-1" data-surface="29 0 3165 3167 3168 0.666 0.097 0.237" data-visibility-attribute="visible">
+    <model-viewer
+      src="https://sharkyiex.github.io/modeltest/low-poly_truck_car_drifter.glb"
+      ar
+      ar-modes="scene-viewer webxr quick-look"
+      camera-controls
+      tone-mapping="neutral"
+      poster="poster.webp"
+      shadow-intensity="1.21"
+      autoplay
+      exposure="0.79"
+      shadow-softness="1"
+      auto-rotate
+    >
+      <button class="Hotspot" slot="hotspot-1" data-surface="29 0 3165 3167 3168 0.666 0.097 0.237" data-visibility-attribute="visible">
         <div class="HotspotAnnotation">Motor</div>
-    </button><button class="Hotspot" slot="hotspot-3" data-surface="2 0 52 97 53 0.161 0.560 0.278" data-visibility-attribute="visible">
+      </button>
+      <button class="Hotspot" slot="hotspot-3" data-surface="2 0 52 97 53 0.161 0.560 0.278" data-visibility-attribute="visible">
         <div class="HotspotAnnotation">Llanta</div>
-    </button><button class="Hotspot" slot="hotspot-4" data-surface="29 0 3480 3483 3498 0.237 0.389 0.375" data-visibility-attribute="visible">
+      </button>
+      <button class="Hotspot" slot="hotspot-4" data-surface="29 0 3480 3483 3498 0.237 0.389 0.375" data-visibility-attribute="visible">
         <div class="HotspotAnnotation">Escalera</div>
-    </button>
-    <div class="progress-bar hide" slot="progress-bar">
+      </button>
+
+      <div class="progress-bar" slot="progress-bar">
         <div class="update-bar"></div>
-    </div>
-    <button slot="ar-button" id="ar-button">
+      </div>
+
+      <button slot="ar-button" id="ar-button">
         View in your space
-    </button>
-    <div id="ar-prompt">
-        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
-    </div>
-</model-viewer>
+      </button>
+
+      <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png" />
+      </div>
+    </model-viewer>
   </body>
 </html>
