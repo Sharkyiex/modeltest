@@ -17,16 +17,23 @@
     </style>
   </head>
   <body>
-    <model-viewer
-      src="https://sharkyiex.github.io/modeltest/cuadro.glb"
-      ar
-      ar-modes="scene-viewer webxr quick-look"
-      camera-controls
-      tone-mapping="neutral"
-      shadow-intensity="1.09"
-      auto-rotate
-      alt="Modelo 3D"
-    >
-    </model-viewer>
+<model-viewer src="low-poly_truck_car_drifter.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1.21" autoplay exposure="0.79" shadow-softness="1" auto-rotate>
+    <button class="Hotspot" slot="hotspot-1" data-surface="29 0 3165 3167 3168 0.666 0.097 0.237" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Motor</div>
+    </button><button class="Hotspot" slot="hotspot-3" data-surface="2 0 52 97 53 0.161 0.560 0.278" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Llanta</div>
+    </button><button class="Hotspot" slot="hotspot-4" data-surface="29 0 3480 3483 3498 0.237 0.389 0.375" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Escalera</div>
+    </button>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+    </div>
+</model-viewer>
   </body>
 </html>
